@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Elektronski Dnevnik</title>
+
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="../main.css">
+</head>
+<body>
+
+<header><h1>Elektronski Dnevnik</h1></header>
+<h2 style="display:flex;
+    justify-content: center;">Dodaj Ucenika:</h2>
+<main>
+
+    <form action="{{ path('sacuvajUcenika',{'token': token, 'razredni': razredni, 'predmeti':predmeti, 'ucenici':ucenici, 'razredId': razredId}) }}">
+        <div class="form-group">
+            <label for="email">Ime:</label>
+            <input type="text" class="form-control" id="email" name="ime">
+        </div>
+        <div class="form-group">
+            <label for="email">Prezime:</label>
+            <input type="text" class="form-control" id="email" name="prezime">
+        </div>
+        <div class="form-group">
+            <label for="email">Adresa:</label>
+            <input type="text" class="form-control" id="email" name="adresa">
+        </div>
+        <div class="form-group">
+            <label for="email">Telefon:</label>
+            <input type="text" class="form-control" id="email" name="telefon">
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" name="email">
+        </div>
+        <div class="form-group">
+            <label for="pwd">Sifra:</label>
+            <input type="password" class="form-control" id="pwd" name="sifra">
+        </div>
+        <input type="hidden" name="token" value={{ token }}>
+        <input type="hidden" name="razredni[id]" value={{ razredni.id }}>
+        <input type="hidden" name="razredni[naziv]" value="{{ razredni.naziv }}">
+        <input type="hidden" name="razredId" value={{ razredId }}>
+        {% for key,predmet in predmeti %}
+            <input type="hidden" name="predmeti[{{ key }}][id]" value={{ predmet.id }}>
+            <input type="hidden" name="predmeti[{{ key }}][naziv]" value={{ predmet.naziv }}>
+            {% if predmet.nastavnik %}
+            <input type="hidden" name="predmeti[{{ key }}][nastavnik][id]" value={{ predmet.nastavnik.id }}>
+            <input type="hidden" name="predmeti[{{ key }}][nastavnik][naziv]" value="{{ predmet.nastavnik.naziv }}">
+            {% endif %}
+         {% endfor %}
+         {% for key,ucenik in ucenici %}
+            <input type="hidden"name="ucenici[{{ key }}][ime]" value={{ ucenik.ime }}>
+            <input type="hidden" name="ucenici[{{ key }}][prezime]" value={{ ucenik.prezime }}>
+            <input type="hidden" name="ucenici[{{ key }}][adresa]" value={{ ucenik.adresa }}>
+             <input type="hidden" name="ucenici[{{ key }}][telefon]" value={{ ucenik.telefon }}>
+             <input type="hidden" name="ucenici[{{ key }}][email]" value={{ ucenik.email }}>
+             <input type="hidden" name="ucenici[{{ key }}][sifra]" value={{ ucenik.sifra }}>
+             <input type="hidden" name="ucenici[{{ key }}][naziv]" value="{{ ucenik.naziv }}">
+         {% endfor %}
+        <div id="opcije">
+            <a href="{{ url('dodajOdeljenje', {'token': token, 'razredni': razredni, 'predmeti':predmeti, 'ucenici':ucenici, 'razredId': razredId}) }}">
+            <button class="btn btn-default button-razredi">Nazad</button>
+            </a>
+            <a href=""><button class="btn btn-default button-razredi">Sacuvaj</button></a>
+        </div>
+    </form>
+</main>
+<footer></footer>
+
+
+</body>
+</html>

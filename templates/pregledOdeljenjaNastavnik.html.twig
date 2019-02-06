@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Elektronski Dnevnik</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="../main.css">
+</head>
+<body>
+
+
+<header><h1>Elektronski Dnevnik</h1></header>
+<main id="razredi">
+    {% for odeljenje in odeljenjeList %}
+    <a href="{{ url('pregledPredmeta', {'odeljenjeId': odeljenje.id, 'token':token, 'nastavnik':nastavnik}) }}"><button class="btn btn-default button-razredi">{{ odeljenje.oznaka }}</button></a>
+    {% endfor %}
+    {%if odeljenjeList=='' %}
+        <div>Nema Odeljenja</div>
+    {% endif %}
+    <a href="{{ url('login') }}"><button class="btn btn-default button-razredi" style="margin-top: 50px;">Nazad</button></a>
+
+</main>
+<footer></footer>
+
+
+</body>
+</html>

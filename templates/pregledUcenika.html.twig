@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Elektronski Dnevnik</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="../main.css">
+</head>
+<body>
+
+
+<header><h1>Elektronski Dnevnik</h1></header>
+<main id="razredi">
+    <h2>Matematika</h2>
+    <div id="spisak">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Ime i Prezime</th>
+            <th>Ocene</th>
+            <th>Dugme</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for ucenik in ucenici %}
+        <tr>
+            <td>{{  ucenik.naziv }}</td>
+            <td>{{ ucenik.ocene }}</td>
+            <td><a href="{{ url('unosOcene', {'token':token,'odeljenjeId':odeljenjeId, 'nastavnik':nastavnik, 'ucenikId':ucenik.id, 'predmetId':predmetId }) }}"><button class="btn btn-default button-razredi">Unesi Ocenu</button></a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    </div>
+
+    <a href="{{ url('izborOperacije', {'token':token,'odeljenjeId':odeljenjeId, 'nastavnik':nastavnik, 'predmetId':predmetId}) }}"><button class="btn btn-default button-razredi" style="margin-top: 50px;">Nazad</button></a>
+
+</main>
+<footer></footer>
+
+
+</body>
+</html>

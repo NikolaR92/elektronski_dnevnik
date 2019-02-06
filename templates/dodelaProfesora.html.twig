@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Elektronski Dnevnik</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="../main.css">
+</head>
+<body>
+
+
+<header><h1>Elektronski Dnevnik</h1></header>
+<main id="razredi">
+    <h2>Plan:</h2>
+    {% for predmet in predmeti %}
+    <div class="predmet">
+        <p>{{ predmet.naziv}}:</p>
+        <a href="{{  url('izborNastavnika', {'token': token, 'razredni': razredni, 'predmeti':predmeti, 'ucenici':ucenici, 'razredId': razredId, 'predmetId': predmet.id}) }}" >
+            <button class="btn btn-default">
+                {% if predmet.nastavnik %}
+                    {{ predmet.nastavnik.naziv }}
+                {% else %}
+                    Dodaj Nastavnika
+                {% endif %}
+            </button>
+        </a>
+    </div>
+    {% endfor %}
+    <div id="opcije">
+        <a href="{{ url('dodajOdeljenje', {'token': token, 'razredni': razredni, 'predmeti':'', 'ucenici':ucenici, 'razredId': razredId}) }}">
+            <button class="btn btn-default button-razredi">Nazad</button>
+        </a>
+        {% if dodeljeni %}
+        <a href="{{ url('dodajOdeljenje', {'token': token, 'razredni': razredni, 'predmeti':predmeti, 'ucenici':ucenici, 'razredId': razredId}) }}">
+            <button class="btn btn-default button-razredi">Sacuvaj</button>
+        </a>
+        {% endif %}
+    </div>
+</main>
+<footer></footer>
+
+
+</body>
+</html>

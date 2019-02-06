@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Elektronski Dnevnik</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="../main.css">
+</head>
+<body>
+
+
+<header><h1>Elektronski Dnevnik</h1></header>
+<main id="razredi">
+    <div id="opcije">
+        <a href="{{ url('spisakOdeljenjaNastavnik', {'token': token, 'nastavnik': nastavnik, 'odeljenjeId':odeljenjeId}) }}"><button class="btn btn-default button-razredi">Nazad</button></a>
+        <a href="{{ url('upisCasa', {'token': token, 'nastavnik': nastavnik, 'odeljenjeId':odeljenjeId}) }}"><button class="btn btn-default button-razredi">Upisi cas</button></a>
+        <a href="{{ url('spisakUcenika', {'token': token, 'nastavnik': nastavnik, 'odeljenjeId':odeljenjeId}) }}"><button class="btn btn-default button-razredi">Pregled Ucenika</button></a>
+    </div>
+</main>
+<footer></footer>
+
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Elektronski Dnevnik</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="../main.css">
+</head>
+<body>
+
+
+<header><h1>Elektronski Dnevnik</h1></header>
+<main id="razredi">
+    <div id="right">
+        {% if not razredni %}
+        <a href="{{ url('dodajRazrednog', {'token': token, 'razredni': razredni, 'predmeti':predmeti, 'ucenici':ucenici, 'razredId': razredId}) }}"><button class="btn btn-default ">Dodaj Razrednog</button></a>
+        {% endif %}
+
+        <a href="{{ url('dodajNastavnike', {'token': token, 'razredni': razredni, 'predmeti':predmeti, 'ucenici':ucenici, 'razredId': razredId}) }}"><button class="btn btn-default ">Dodeli Nastavnika</button></a>
+
+
+        <a href="{{ url('dodajUcenika', {'token': token, 'razredni': razredni, 'predmeti':predmeti, 'ucenici':ucenici, 'razredId': razredId}) }}"><button class="btn btn-default ">Dodaj Ucenika</button></a>
+        <button class="btn btn-default"> Napravi izmene</button>
+        <a href="{{ url('sacuvajOdeljenje', {'token': token, 'razredni': razredni, 'predmeti':predmeti, 'ucenici':ucenici, 'razredId': razredId}) }}"><button class="btn btn-default ">Sacuvaj</button></a>
+    </div>
+    <div id="left">
+        <div id="razredni">
+            <p>Razredni: {% if not razredni %}
+                                Nije Dodeljen
+                         {% else %}
+                        {{razredni.naziv}}
+                        {% endif %}
+            </p>
+        </div>
+        <div id="predmeti">
+            <p class="naslovi">Predmeti:</p>
+            {% for predmet in predmeti %}
+                <p>{{predmet.naziv}}:
+                    {% if predmet.nastavnik %}
+                        {{predmet.nastavnik.naziv}}
+                    {% else %}
+                        Nije Dodeljen
+                    {% endif %}
+                </p>
+            {% endfor%}
+        </div>
+        <div id="ucenici">
+            <p class="naslovi">Ucenici:</p>
+            {% for ucenik in ucenici %}
+            <p>
+                {{ ucenik.naziv }}
+            </p>
+            {% endfor %}
+        </div>
+    </div>
+
+</main>
+<footer></footer>
+
+
+</body>
+</html>

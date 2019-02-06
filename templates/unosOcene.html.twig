@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Elektronski Dnevnik</title>
+
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="../main.css">
+</head>
+<body>
+
+<header><h1>Elektronski Dnevnik</h1></header>
+<main>
+    <form action="{{ url('sacuvajOcenu') }}">
+        <div class="form-group">
+            <label >Ocena:</label>
+            <input type="number" name="ocena" min="1" max="5">
+            <input type="hidden" name="token" value={{ token }}>
+            <input type="hidden" name="odeljenjeId" value={{ odeljenjeId }}>
+            <input type="hidden" name="nastavnik" value={{ nastavnik }}>
+            <input type="hidden" name="predmetId" value={{ predmetId }}>
+            <input type="hidden" name="ucenikId" value={{ ucenikId }}>
+        </div>
+        <div class="form-group">
+            <label for="txtArea" style="display: block;">Opis Gradiva:</label>
+            <textarea id="txtArea" rows="10" cols="70" name="gradivo"></textarea>
+        </div>
+        <a href="{{ url('spisakUcenika', {'token':token, 'odeljenjeId':odeljenjeId, 'nastavnik':nastavnik, 'predmetId':predmetId}) }}"> <button type="button" class="btn btn-default">Nazad</button></a>
+        <button type="submit" class="btn btn-default">Sacuvaj</button>
+    </form>
+</main>
+<footer></footer>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+version: '2'
+services:
+  php:
+    container_name: elektronskiDnevnik-php
+    image: stevs986/docker-php7.1
+    working_dir: /var/www/elektronski_dnevnik
+    volumes:
+      - .:/var/www/elektronski_dnevnik
+  nginx-webserver:
+    container_name: elektronskiDnevnik-webserver
+    image: nginx:latest
+    links:
+      - php
+      - mysql-server
+    volumes:
+      - .:/var/www/elektronski_dnevnik
+      - ./docker/nginx/webserver.conf:/etc/nginx/conf.d/webservelsr.conf:ro
+    ports:
+      - 8091:80
+      - 44391:443
+  mysql-server:
+    container_name: elektronskiDnevnik-mysql
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345
+      MYSQL_USER: profesor
+      MYSQL_PASSWORD: 12345
+    ports:
+      - 8092:3306

@@ -1,0 +1,90 @@
+
+body {
+    height: 100%;
+}
+
+header {
+    height: 200px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+}
+
+main {
+    margin-top:100px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form{
+    width: 800px;
+}
+
+#razredi {
+    flex-direction: column;
+}
+
+.button-razredi {
+    width: 200px;
+    height: 50px;
+}
+
+#opcije {
+    display: flex;
+    justify-content: space-between;
+    align-content: space-around;
+    align-items: center;
+    margin-top: 50px;
+}
+
+#left {
+    margin-top: 20px;
+    border: black solid;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+}
+
+p {
+    padding: 5px;
+}
+
+#razredni {
+    border-bottom: black solid;
+    padding: 5px;
+}
+
+#predmeti {
+    border-bottom: black solid;
+    padding-top: 0px;
+}
+
+#ucenici {
+    padding-top: 0px;
+}
+
+.naslovi {
+    background-color: black;
+    color: white;
+
+}
+
+
+.predmet {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.predmet p {
+    width: 100px;
+}
+
+#spisak {
+    width: 60%;
+}
+
+

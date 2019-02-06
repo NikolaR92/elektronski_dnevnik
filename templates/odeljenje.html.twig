@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Elektronski Dnevnik</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="../main.css">
+</head>
+<body>
+
+
+<header><h1>Elektronski Dnevnik</h1></header>
+<main id="razredi">
+    <div id="right">
+
+        <button class="btn btn-default"> Napravi izmene</button>
+        <a href="{{ url('odeljenjeAdministrator', {'token': token, 'razredId': razredId}) }}"><button class="btn btn-default ">Nazad</button></a>
+    </div>
+    <div id="left">
+        <div id="razredni">
+            <p>Razredni: {% if not razredni %}
+                Nije Dodeljen
+                {% else %}
+                {{razredni.naziv}}
+                {% endif %}
+            </p>
+        </div>
+        <div id="predmeti">
+            <p class="naslovi">Predmeti:</p>
+            {% for predmet in predmeti %}
+            <p>{{predmet.naziv}}:
+                {% if not predmet.nastavnik %}
+                Nije Dodeljen
+                {% else %}
+                {{predmet.nastavnik.naziv}}
+                {% endif %}
+            </p>
+            {% endfor%}
+        </div>
+        <div id="ucenici">
+            <p class="naslovi">Ucenici:</p>
+            {% for ucenik in ucenici %}
+            <p>
+                {{ ucenik.naziv }}
+            </p>
+            {% endfor %}
+        </div>
+    </div>
+
+</main>
+<footer></footer>
+
+
+</body>
+</html>
